@@ -40,7 +40,6 @@ public class Rational {
             sum_rationals = new Rational(new_numerator, new_denominator);
         } catch (IllegalArgumentException e) {
             System.out.println("At least one of your numbers has a denominator that equals zero.");
-            e.printStackTrace();
         }
         return sum_rationals;
 
@@ -54,7 +53,6 @@ public class Rational {
             sum_rationals = new Rational(new_numerator, new_denominator);
         } catch (IllegalArgumentException e) {
             System.out.println("At least one of your numbers has a denominator that equals zero.");
-            e.printStackTrace();
         }
         return sum_rationals;
     }
@@ -67,7 +65,6 @@ public class Rational {
             sum_rationals = new Rational(new_numerator, new_denominator);
         } catch (IllegalArgumentException e) {
             System.out.println("At least one of your numbers has a denominator that equals zero.");
-            e.printStackTrace();
         }
         return sum_rationals;
     }
@@ -82,7 +79,6 @@ public class Rational {
             sum_rationals = new Rational(new_numerator, new_denominator);
         } catch (IllegalArgumentException e) {
             System.out.println("Returned number will have a denominator of zero");
-            e.printStackTrace();
         }
         return sum_rationals;
     }
@@ -98,7 +94,6 @@ public class Rational {
             reduce_rational = new Rational(new_numerator, new_denominator);
         } catch (IllegalArgumentException e) {
             System.out.println("reduction results in a denominator of zero");
-            e.printStackTrace();
         }
         return reduce_rational;
     }
