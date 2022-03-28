@@ -1,6 +1,6 @@
 package com.company;
 
-import sun.awt.X11.XSystemTrayPeer;
+
 
 import java.util.Scanner;
 
@@ -92,11 +92,11 @@ public class RationalCalculator {
         System.out.println(first.toString() + " + " + second.toString() + "=" + first.plus(second).reduce().toString());
         System.out.println(first.toString() + " - " + second.toString() + "=" + first.minus(second).reduce().toString());
         System.out.println(first.toString() + " * " + second.toString() + "=" + first.multiply(second).reduce().toString());
-        try {//division might throw an exception if the second number is a 0/x for some x!=0
+        try {//division might throw an exception if the second number is a 0/x for some x!=0 or the result will have a negative denominator
             Rational division_result = first.divide(second);
             System.out.println(first.toString() + " / " + second.toString() + "=" + division_result.reduce().toString());
-        } catch (ArithmeticException e) {
-            System.out.println("Cant divide by zero");
+        } catch (Exception e) {
+            System.out.println("Cant divide by zero or number will result in a negative denominator");
         }
     }
 

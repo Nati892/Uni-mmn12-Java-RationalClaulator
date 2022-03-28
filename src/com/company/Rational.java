@@ -114,6 +114,7 @@ public class Rational {
         return sum_rationals;
     }
 
+
     /**
      * this function divides between this Rational and the param
      *
@@ -130,7 +131,7 @@ public class Rational {
         try {
             sum_rationals = new Rational(new_numerator, new_denominator);
         } catch (IllegalArgumentException e) {
-            System.out.println("Returned number will have a denominator of zero");
+            System.out.println("Returned number is invalid");
         }
         return sum_rationals;
     }
