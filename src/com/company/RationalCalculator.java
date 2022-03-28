@@ -32,16 +32,18 @@ public class RationalCalculator {
             }
 
 
-
-
-
         }
 
 
     }
 
     public static Rational handleRationalInput(String text) {
-        System.out.println("Debug: " + text);/*debug*/
+        Rational returnedVal;
+        System.out.println("handleRationalInput:Text: ->" + text + "<-");/*debug*/
+
+
+
+
 
     }
 
