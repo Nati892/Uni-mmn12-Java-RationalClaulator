@@ -1,7 +1,5 @@
 package com.company;
 
-
-
 import java.util.Scanner;
 
 public class RationalCalculator {
@@ -10,15 +8,14 @@ public class RationalCalculator {
 
     /**
      * entry point for program.
-     * the functions calls for inputLoop to start the calculator
+     * the function calls for inputLoop to start the calculator
      *
      * @param args
      */
     public static void main(String[] args) {
         scanner = new Scanner(System.in);//init scanner
         inputLoop();//main loop
-        System.out.println("Goodbye, thanks for using my calculator.");
-
+        System.out.println("Goodbye");
     }
 
     /**
@@ -27,29 +24,28 @@ public class RationalCalculator {
      */
     public static void inputLoop() {
 
-        while (true) {/*main loop for program, will exit when user enters exit*/
-            System.out.println("Lets start!,Enter \"exit\" at any time to exit");
-            System.out.println("please enter first rational number ");
-            Rational first_num, second_num;
+
+        System.out.println("Lets start!");
+        Rational first_rational_num, second_rational_num;
 
 
-            first_num = getRationalNumber();//get first rational number
-            while (first_num == null) {//if the input was bad then null is returned and the user should renter the first
-                System.out.println("please re-enter the first rational number");
-                first_num = getRationalNumber();
-            }
-
-            second_num = getRationalNumber();//get first rational number
-            while (second_num == null) {//if the input was bad then null is returned and the user should renter the second
-                System.out.println("please re-enter the second rational number");
-                second_num = getRationalNumber();
-            }
-
-            showOperations(first_num, second_num);//shows the result of each operation defined in the Rational class
+        System.out.println("please enter the first rational number ");
+        first_rational_num = getRationalNumber();//get first rational number
+        while (first_rational_num == null) {//if the input was bad then null is returned and the user should renter the first
+            System.out.println("please re-enter the first rational number");
+            first_rational_num = getRationalNumber();
         }
 
+        System.out.println("please enter the second rational number ");
+        second_rational_num = getRationalNumber();//get first rational number
+        while (second_rational_num == null) {//if the input was bad then null is returned and the user should renter the second
+            System.out.println("please re-enter the second rational number");
+            second_rational_num = getRationalNumber();
+        }
 
+        showOperations(first_rational_num, second_rational_num);//shows the result of each operation defined in the Rational class
     }
+
 
     /**
      * This function gets a Rational number from the user
@@ -63,16 +59,15 @@ public class RationalCalculator {
         int numerator;
         int denominator;
         while (!good_rational_number) {//try-catch loop trying to get two integers from the user
-            System.out.println("please enter a numerator");
-            numerator = getUserInt();
-            System.out.println("please enter a denominator");
-            denominator = getUserInt();
+            System.out.println("please enter a numerator and a denominator with a space between them");
+            numerator = scanner.nextInt();
+            denominator = scanner.nextInt();
 
             try {
                 returned_rational = new Rational(numerator, denominator);
                 good_rational_number = true;//allow to exit the try catch loop
             } catch (Exception e) {
-                System.out.println("please re-enter a rational number");
+                System.out.println("please re-enter the rational number");
             }
         }
         return returned_rational;
@@ -92,56 +87,12 @@ public class RationalCalculator {
         System.out.println(first.toString() + " + " + second.toString() + "=" + first.plus(second).reduce().toString());
         System.out.println(first.toString() + " - " + second.toString() + "=" + first.minus(second).reduce().toString());
         System.out.println(first.toString() + " * " + second.toString() + "=" + first.multiply(second).reduce().toString());
-        try {//division might throw an exception if the second number is a 0/x for some x!=0 or the result will have a negative denominator
+        try {//division might throw an exception if the second number is a 0/x
             Rational division_result = first.divide(second);
             System.out.println(first.toString() + " / " + second.toString() + "=" + division_result.reduce().toString());
         } catch (Exception e) {
-            System.out.println("Cant divide by zero or number will result in a negative denominator");
+            System.out.println("divisor is zero! cant divide ");
         }
     }
 
-    /**
-     * This function gets the user's input and handles an 'exit' statement and a blank line input
-     * blank line- ignore
-     * exit-exit the program
-     *
-     * @return a String containing the user's input String
-     */
-    public static String GetUserInput() {
-        String user_input = scanner.nextLine().trim();// get the line and trim it from white chars
-
-        if (user_input.equals("exit")) {//handles exit statement
-
-            System.out.println("bye bye");
-            System.exit(0);
-        }
-
-        if (user_input.equals(""))//handle white chars line
-            return GetUserInput();
-
-        return user_input;
-
-    }
-
-    /**
-     * This function uses @GetUserInput and handles converting it to an int and returning it
-     *
-     * @return the int gotten from the user
-     */
-    public static int getUserInt() {
-        int returned_value = 0;
-        boolean isGoodInput = false;
-        String user_input;//determines if to exit the try-catch loop
-
-        while (!isGoodInput) {//get input - im not immediately getting an int because I want the user to be able to peacefully exit the program at all times with "exit"
-            try {// handle a bad int conversion
-                user_input = GetUserInput();
-                returned_value = Integer.parseInt(user_input);
-                isGoodInput = true;//good number and exit the try-catch loop
-            } catch (Exception e) {
-                System.out.println("bad input. please re-enter number.");
-            }
-        }
-        return returned_value;
-    }
 }

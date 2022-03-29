@@ -14,11 +14,12 @@ public class Rational {
     public Rational(int numerator, int denominator) throws IllegalArgumentException {
         this._numerator = numerator;
         this._denominator = 1;
-        if (denominator <= 0)
-            throw new IllegalArgumentException("Denominator must be Natural number");
-
+        if (denominator == 0) throw new IllegalArgumentException("Denominator can't be zero!");
         this._denominator = denominator;
-
+        if (_denominator < 0) {
+            _denominator *= -1;
+            _numerator *= -1;
+        }
     }
 
     /**
@@ -124,8 +125,7 @@ public class Rational {
      */
     public Rational divide(Rational other) throws ArithmeticException {//did not use multiply here because of unfitting error message
         Rational sum_rationals = null;
-        if (other.getNumerator() == 0)
-            throw new ArithmeticException("Denominator parameter is zero");
+        if (other.getNumerator() == 0) throw new ArithmeticException("Denominator parameter is zero");
         int new_numerator = (this._numerator * other.getDenominator());
         int new_denominator = this._denominator * other.getNumerator();
         try {
@@ -156,12 +156,9 @@ public class Rational {
     }
 
     private int gcd(int x, int y) {
-        if (x < 0)
-            x *= -1;
-        if (y < 0)
-            y *= -1;
-        if (y == 0)
-            return x;
+        if (x < 0) x *= -1;
+        if (y < 0) y *= -1;
+        if (y == 0) return x;
         return gcd(y, x % y);
     }
 
